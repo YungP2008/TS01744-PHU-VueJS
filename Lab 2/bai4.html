@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 4 - Modal & Tabs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="container mt-4">
+
+<h4 class="mb-3">Bài 4 (3 điểm): Kết hợp Tab và Modal</h4>
+
+<!-- Nút mở Modal -->
+<button class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#accountModal">
+    Tài khoản
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="accountModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Tài khoản</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+
+                <!-- Tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           data-bs-toggle="tab"
+                           href="#register"
+                           role="tab">
+                            Đăng ký
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           data-bs-toggle="tab"
+                           href="#login"
+                           role="tab">
+                            Đăng nhập
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content pt-3">
+
+                    <!-- ===== ĐĂNG KÝ ===== -->
+                    <div id="register"
+                         class="tab-pane fade show active"
+                         role="tabpanel">
+
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Họ và Tên</label>
+                                <input class="form-control"
+                                       placeholder="Nhập họ và tên">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input class="form-control"
+                                       placeholder="Nhập email">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Số Điện Thoại</label>
+                                <input class="form-control"
+                                       placeholder="Nhập số điện thoại">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Mật Khẩu</label>
+                                <input type="password"
+                                       class="form-control"
+                                       placeholder="Nhập mật khẩu">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Xác Nhận Mật Khẩu</label>
+                                <input type="password"
+                                       class="form-control"
+                                       placeholder="Xác nhận mật khẩu">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label d-block">Giới Tính</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="gender"
+                                           checked>
+                                    <label class="form-check-label">Nam</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="gender">
+                                    <label class="form-check-label">Nữ</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Ngôn Ngữ</label>
+                                <select class="form-select">
+                                    <option selected>Tiếng Việt</option>
+                                    <option>English</option>
+                                    <option>日本語</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 form-check">
+                                <input class="form-check-input"
+                                       type="checkbox">
+                                <label class="form-check-label">
+                                    Tôi đồng ý với các điều khoản và điều kiện
+                                </label>
+                            </div>
+
+                            <button class="btn btn-primary">
+                                Đăng Ký
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- ===== ĐĂNG NHẬP ===== -->
+                    <div id="login"
+                         class="tab-pane fade"
+                         role="tabpanel">
+
+                        <form class="border p-3 rounded">
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input class="form-control"
+                                       placeholder="Nhập email">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Mật Khẩu</label>
+                                <input type="password"
+                                       class="form-control"
+                                       placeholder="Nhập mật khẩu">
+                            </div>
+
+                            <button class="btn btn-primary">
+                                Đăng Nhập
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
