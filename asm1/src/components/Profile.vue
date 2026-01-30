@@ -11,7 +11,7 @@
             style="width: 150px; height: 150px; object-fit: cover;"
           >
           <h4 class="fw-bold">Phạm Châu Lương Phú</h4>
-          <p class="text-muted">Thành viên từ: 01/2024</p>
+          <p class="text-muted">Mã Số: TS01744</p>
         </div>
       </div>
 

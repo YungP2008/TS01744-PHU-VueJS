@@ -22,29 +22,33 @@
           </div>
         </div>
 
-        <!-- PHẦN NỘI DUNG VÀ ẢNH NHỎ (Dùng d-flex để ảnh nằm cạnh chữ) -->
         <div class="d-flex align-items-start mb-3">
-          <!-- Ảnh nhỏ giống trong comment -->
-          <img src="../assets/images/speed.jpg" 
+          <img src="../assets/images/jerry.jpg" 
                class="rounded border shadow-sm me-3" 
                style="width: 100px; height: 100px; object-fit: cover;" 
                alt="Thumbnail">
-          
           <p class="card-text text-secondary mb-0">
-            Đây là nội dung của bài viết thứ nhất. Bây giờ ảnh đã được thu nhỏ lại 
-            và nằm gọn gàng bên cạnh nội dung như bạn muốn.
+            Đây là nội dung của bài viết thứ nhất.
           </p>
         </div>
 
         <hr>
         <p class="small fw-bold mb-2">Bình luận:</p>
-        <div class="ms-3 mb-2 p-2 bg-light rounded border-start border-3 border-primary">
-          <small class="fw-bold">Mai Quốc Tam</small>
+        <!-- Danh sách bình luận hiện có -->
+        <div class="ms-3 mb-2 p-2 bg-light rounded border-3 border-primary">
+          <small class="fw-bold">Lương Phú</small>
           <p class="mb-0 small">Bình luận của bài 1 nè!</p>
+        </div>
+
+        <!-- PHẦN NHẬP BÌNH LUẬN CHO NGƯỜI DÙNG (BÀI 1) -->
+        <div class="mt-3 d-flex gap-2">
+          <input type="text" class="form-control form-control-sm rounded-pill bg-light border-0 ps-3" placeholder="Viết bình luận của bạn...">
+          <button class="btn btn-primary btn-sm rounded-pill px-3">Gửi</button>
         </div>
       </div>
     </div>
 
+    <!-- BÀI VIẾT SỐ 2 -->
     <div class="card mb-4 shadow-sm border-0">
       <div class="card-body">
         <div class="d-flex justify-content-between mb-2">
@@ -61,19 +65,26 @@
                style="width: 100px; height: 100px; object-fit: cover;" 
                alt="Thumbnail">
           <p class="card-text text-secondary">
-            Nội dung bài 2 hoàn toàn khác. Bạn có thể thay đổi chữ này mà không ảnh hưởng bài trên.
+            Nội dung bài 2 đây.
           </p>
         </div>
 
         <hr>
-        <div class="ms-3 mb-2 p-2 bg-light rounded border-start border-3 border-success">
-          <small class="fw-bold text-success">Nguyễn Văn A</small>
-          <p class="mb-0 small">Bài 2 này ảnh cũng đã nhỏ lại rồi!</p>
+        <p class="small fw-bold mb-2">Bình luận:</p>
+        <div class="ms-3 mb-2 p-2 bg-light rounded border-3 border-success">
+          <small class="fw-bold text-success">Mai Quốc Tam</small>
+          <p class="mb-0 small">hehe</p>
+        </div>
+
+        <!-- PHẦN NHẬP BÌNH LUẬN CHO NGƯỜI DÙNG (BÀI 2) -->
+        <div class="mt-3 d-flex gap-2">
+          <input type="text" class="form-control form-control-sm rounded-pill bg-light border-0 ps-3" placeholder="Viết bình luận của bạn...">
+          <button class="btn btn-primary btn-sm rounded-pill px-3">Gửi</button>
         </div>
       </div>
     </div>
 
-    <!-- BÀI VIẾT SỐ 3 (Nhân bản và chỉnh sửa riêng) -->
+    <!-- BÀI VIẾT SỐ 3 -->
     <div class="card mb-4 shadow-sm border-0">
       <div class="card-body">
         <div class="d-flex justify-content-between mb-2">
@@ -85,22 +96,38 @@
         </div>
 
         <div class="d-flex align-items-start mb-3">
-          <img src="../assets/images/speed.jpg" 
+          <img src="../assets/images/miwa.jpg" 
                class="rounded border shadow-sm me-3" 
                style="width: 100px; height: 100px; object-fit: cover;" 
                alt="Thumbnail">
           <p class="card-text text-secondary">
-            Bài viết thứ 3 với thông tin riêng biệt. Ảnh đại diện/minh họa đã đồng nhất kích thước.
+            Bài viết thứ 3 đây.
           </p>
         </div>
 
         <hr>
-        <div class="ms-3 mb-2 p-2 bg-light rounded border-start border-3 border-danger">
-          <small class="fw-bold text-danger">Lê Thị C</small>
-          <p class="mb-0 small">Bình luận riêng cho bài số 3.</p>
+        <p class="small fw-bold mb-2">Bình luận:</p>
+        <div class="ms-3 mb-2 p-2 bg-light rounded border-3 border-danger">
+          <small class="fw-bold text-danger">Hoàng Nguyên</small>
+          <p class="mb-0 small">ahihi</p>
+        </div>
+
+        <!-- PHẦN NHẬP BÌNH LUẬN CHO NGƯỜI DÙNG (BÀI 3) -->
+        <div class="mt-3 d-flex gap-2">
+          <input type="text" class="form-control form-control-sm rounded-pill bg-light border-0 ps-3" placeholder="Viết bình luận của bạn...">
+          <button class="btn btn-primary btn-sm rounded-pill px-3">Gửi</button>
         </div>
       </div>
     </div>
 
   </div>
 </template>
+
+<style scoped>
+/* Chỉnh một chút để ô input khi click vào không bị viền đen xấu */
+.form-control:focus {
+  box-shadow: none;
+  background-color: #f8f9fa !important;
+  border: 1px solid #0d6efd !important;
+}
+</style>

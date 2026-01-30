@@ -85,16 +85,16 @@ import Bai3 from './components/Bai3.vue';
 </template> -->
 
 <!-- Bài 4 -->
-<!--<script setup>
+<script setup>
 import Bai4 from './components/Bai4.vue';
 </script>
 <template>  
 <Bai4/>
-</template>-->
+</template>
 
-<script setup>
+<!-- <script setup>
 import test from './components/test.vue';
 </script>
 <template>
 <test/>
-</template>
+</template> -->

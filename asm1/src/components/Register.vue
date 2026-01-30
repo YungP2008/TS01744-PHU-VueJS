@@ -15,7 +15,7 @@
 
               <div class="mb-3">
                 <label class="form-label fw-bold">Email</label>
-                <input type="email" class="form-control form-control-lg" placeholder="name@example.com">
+                <input type="email" class="form-control form-control-lg" placeholder="@gmail.com">
               </div>
 
               <div class="mb-3">

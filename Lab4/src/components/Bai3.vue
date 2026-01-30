@@ -21,8 +21,13 @@ export default {
   },
   methods: {
     changeGreeting() {
-      this.greeting = 'Hello, World!';
-      this.buttonTitle = 'Lời chào mới đã được cập nhật';
+      if (this.greeting === 'Xin chào bạn!') {
+        this.greeting = 'Hello, World!';
+        this.buttonTitle = 'Bấm để quay lại lời chào tiếng Việt';
+      } else {
+        this.greeting = 'Xin chào bạn!';
+        this.buttonTitle = 'Nhấn để thay đổi lời chào';
+      }
     }
   }
 };

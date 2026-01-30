@@ -1,7 +1,8 @@
 <template>
   <div class="container mt-5">
     <h1 class="text-center mb-5">Kiến thức sức khỏe cộng đồng</h1>
-    <div class="row g-4">
+    <button class="btn btn-primary" @click="() => {show = !show}">Hiển thị</button>
+    <div class="row g-4" v-if="show">
       <div 
         class="col-md-4 d-flex align-items-stretch" 
         v-for="(item, index) in items" 
@@ -15,9 +16,9 @@
             style="height: 200px; object-fit: cover;"
           />
           <div class="card-body d-flex flex-column">
-            <h3 class="card-title fs-5">{{ item.title }}</h3>
+            <h3 class="card-title fs-5">{{ item.title }}</h3> 
             <p class="card-text text-start flex-grow-1">{{ item.content }}</p>
-            <div class="mt-auto text-start">
+            <div class="mt-auto text-center">
               <button class="btn btn-primary">Xem chi tiết</button>
             </div>
           </div>
@@ -28,10 +29,12 @@
 </template>
 
 <script setup>
+
 import img1 from '../assets/images/img1.jpg';
 import img2 from '../assets/images/img2.jpg';
 import img3 from '../assets/images/img3.jpg';
-
+import { ref } from 'vue';
+const show = ref(true);
 const items = [
   {
     title: '8 loại rau củ quả giàu canxi',
@@ -48,5 +51,6 @@ const items = [
     content: 'Đậu lăng, đậu đen, đậu xanh... là những loại đậu giàu protein, chất xơ và các vitamin thiết yếu cho cơ thể...',
     image: img3
   },
+  
 ];
 </script>
