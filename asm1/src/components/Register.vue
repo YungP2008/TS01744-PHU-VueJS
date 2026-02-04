@@ -1,49 +1,61 @@
 <template>
   <div class="container mt-5">
-    <div class="row justify-content-center">
-      <!-- Căn chỉnh độ rộng card cho đẹp -->
-      <div class="col-12 col-sm-10 col-md-8 col-lg-5">
-        <div class="card shadow-lg border-0">
-          <div class="card-body p-5">
-            <h2 class="text-center fw-bold mb-4 text-success">ĐĂNG KÝ</h2>
-            
-            <form>
-              <div class="mb-3">
-                <label class="form-label fw-bold">Họ và tên</label>
-                <input type="text" class="form-control form-control-lg" placeholder="Nhập họ và tên">
-              </div>
+    <div class="card shadow-lg p-5" style="max-width: 500px; margin: 0 auto;">
+      <h2 class="text-center text-primary fw-bold mb-4">ĐĂNG KÝ</h2>
 
-              <div class="mb-3">
-                <label class="form-label fw-bold">Email</label>
-                <input type="email" class="form-control form-control-lg" placeholder="@gmail.com">
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label fw-bold">Mật khẩu</label>
-                <input type="password" class="form-control form-control-lg" placeholder="Nhập mật khẩu">
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label fw-bold">Xác nhận mật khẩu</label>
-                <input type="password" class="form-control form-control-lg" placeholder="Nhập lại mật khẩu">
-              </div>
-
-              <div class="d-grid gap-2 mt-4">
-                <button class="btn btn-success btn-lg" type="button">Tạo tài khoản</button>
-              </div>
-
-              <div class="text-center mt-3">
-                <span>Đã có tài khoản? </span>
-                <a href="#" class="text-decoration-none text-success fw-bold" @click.prevent="$emit('nav-to', 'login')">Đăng nhập</a>
-              </div>
-            </form>
-          </div>
+      <form @submit.prevent="handleRegister">
+        <div class="mb-3">
+          <label class="fw-bold">Họ và Tên</label>
+          <input v-model="registerData.fullName" type="text" class="form-control" placeholder="Nhập họ tên...">
         </div>
-      </div>
+
+        <div class="mb-3">
+          <label class="fw-bold">Email</label>
+          <input v-model="registerData.email" type="email" class="form-control" placeholder="Nhập email...">
+        </div>
+
+        <div class="mb-3">
+          <label class="fw-bold">Mật khẩu</label>
+          <input v-model="registerData.password" type="password" class="form-control" placeholder="Nhập mật khẩu...">
+        </div>
+
+        <div class="mb-3">
+          <label class="fw-bold">Xác nhận mật khẩu</label>
+          <input v-model="registerData.confirmPassword" type="password" class="form-control"
+            placeholder="Nhập lại mật khẩu...">
+        </div>
+
+        <button class="btn btn-primary w-100 mt-3">Đăng Ký</button>
+      </form>
     </div>
   </div>
 </template>
 
 <script setup>
-defineEmits(['nav-to'])
+import { reactive } from 'vue';
+
+const emit = defineEmits(['register-success']);
+
+const registerData = reactive({
+  fullName: '', email: '', password: '', confirmPassword: ''
+});
+
+const handleRegister = () => {
+  if (!registerData.fullName || !registerData.email || !registerData.password) {
+    alert("Vui lòng điền đầy đủ thông tin!");
+    return;
+  }
+
+  if (registerData.password !== registerData.confirmPassword) {
+    alert("Mật khẩu xác nhận không khớp!");
+    return;
+  }
+
+  emit('register-success', {
+    fullName: registerData.fullName,
+    email: registerData.email,
+    password: registerData.password,
+    avatar: null
+  });
+};
 </script>

@@ -3,22 +3,23 @@
     <div class="row">
       <form @submit.prevent="submitForm" class="col-sm-4 border p-4 rounded shadow-sm">
         <h3 class="mb-3">{{ isEditing ? 'Cập nhật học sinh' : 'Thêm học sinh' }}</h3>
-        
+
         <div class="mb-3">
           <label for="name" class="form-label">Họ tên:</label>
           <input type="text" class="form-control" v-model="student.name" id="name" placeholder="Nhập họ tên" required />
         </div>
-        
+
         <div class="mb-3">
           <label for="score" class="form-label">Điểm:</label>
-          <input type="number" max="10" min="0" class="form-control" v-model.number="student.score" id="score" placeholder="Nhập điểm (0-10)" required />
+          <input type="number" max="10" min="0" class="form-control" v-model.number="student.score" id="score"
+            placeholder="Nhập điểm (0-10)" required />
         </div>
-        
+
         <div class="mb-3">
           <label for="dob" class="form-label">Ngày sinh:</label>
           <input type="date" class="form-control" v-model="student.dob" id="dob" required />
         </div>
-        
+
         <button type="submit" class="btn" :class="isEditing ? 'btn-warning' : 'btn-success'">
           {{ isEditing ? 'Cập nhật' : 'Thêm' }}
         </button>

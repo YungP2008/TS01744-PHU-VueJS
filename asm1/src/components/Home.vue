@@ -1,133 +1,151 @@
 <template>
   <div class="container mt-4">
-    <!-- 1. FORM ĐĂNG BÀI MỚI -->
-    <div class="card mb-5 shadow-sm border-0 bg-light">
+    <div v-if="currentUser" class="card mb-5 shadow-sm border-0 bg-white">
       <div class="card-body">
-        <h5 class="fw-bold text-success">Tạo bài viết mới</h5>
-        <input type="text" class="form-control mb-2" placeholder="Tiêu đề bài viết">
-        <textarea class="form-control mb-2" rows="2" placeholder="Nội dung..."></textarea>
-        <input type="file" class="form-control form-control-sm mb-2">
-        <button class="btn btn-success btn-sm px-4">Đăng bài</button>
+        <h5 class="fw-bold text-success mb-3">Tạo bài viết mới</h5>
+        <input v-model="newPost.title" type="text" class="form-control mb-2" placeholder="Tiêu đề bài viết">
+        <textarea v-model="newPost.content" class="form-control mb-2" rows="3"
+          placeholder="Bạn đang nghĩ gì?"></textarea>
+
+        <div class="mb-3">
+          <input type="file" class="form-control form-control-sm mb-1" @change="handleFileChange" ref="fileInput">
+          <small class="text-muted">Chọn ảnh</small>
+        </div>
+
+        <button @click="triggerAddPost" class="btn btn-success px-4">Đăng bài</button>
       </div>
     </div>
 
-    <!-- BÀI VIẾT SỐ 1 -->
-    <div class="card mb-4 shadow-sm border-0">
+    <div v-for="(post, index) in posts" :key="post.id" class="card mb-5 shadow border-0 overflow-hidden">
+
+      <div class="position-relative">
+        <img :src="post.image || '/materazi.jpg'" class="w-100 article-image" alt="Post Cover Image">
+        <button v-if="currentUser" @click="$emit('delete-post', post.id)"
+          class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2 shadow">
+          <i class="bi bi-trash"></i> Xóa
+        </button>
+      </div>
+
       <div class="card-body">
-        <div class="d-flex justify-content-between mb-2">
-          <h5 class="fw-bold">Tiêu đề bài viết số 1</h5>
-          <div class="btn-group">
-            <button class="btn btn-sm btn-outline-warning">Sửa</button>
-            <button class="btn btn-sm btn-outline-danger ms-1">Xóa</button>
+        <h3 class="fw-bold text-dark mb-3">{{ post.title }}</h3>
+        <p class="card-text text-dark lh-lg text-justify">{{ post.content }}</p>
+
+        <hr class="my-4">
+
+        <h5 class="fw-bold mb-3">Bình luận ({{ post.comments.length }})</h5>
+
+        <div v-if="post.comments.length === 0" class="text-muted fst-italic mb-3">Chưa có bình luận nào.</div>
+
+        <div v-for="comment in post.comments" :key="comment.id" class="d-flex mb-3">
+          <div class="me-3">
+            <img v-if="comment.avatar" :src="comment.avatar" class="rounded-circle border"
+              style="width: 40px; height: 40px; object-fit: cover;">
+
+            <div v-else class="bg-secondary rounded-circle text-white d-flex justify-content-center align-items-center"
+              style="width: 40px; height: 40px;">
+              {{ comment.user.charAt(0).toUpperCase() }}
+            </div>
           </div>
-        </div>
-
-        <div class="d-flex align-items-start mb-3">
-          <img src="../assets/images/jerry.jpg" 
-               class="rounded border shadow-sm me-3" 
-               style="width: 100px; height: 100px; object-fit: cover;" 
-               alt="Thumbnail">
-          <p class="card-text text-secondary mb-0">
-            Đây là nội dung của bài viết thứ nhất.
-          </p>
-        </div>
-
-        <hr>
-        <p class="small fw-bold mb-2">Bình luận:</p>
-        <!-- Danh sách bình luận hiện có -->
-        <div class="ms-3 mb-2 p-2 bg-light rounded border-3 border-primary">
-          <small class="fw-bold">Lương Phú</small>
-          <p class="mb-0 small">Bình luận của bài 1 nè!</p>
-        </div>
-
-        <!-- PHẦN NHẬP BÌNH LUẬN CHO NGƯỜI DÙNG (BÀI 1) -->
-        <div class="mt-3 d-flex gap-2">
-          <input type="text" class="form-control form-control-sm rounded-pill bg-light border-0 ps-3" placeholder="Viết bình luận của bạn...">
-          <button class="btn btn-primary btn-sm rounded-pill px-3">Gửi</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- BÀI VIẾT SỐ 2 -->
-    <div class="card mb-4 shadow-sm border-0">
-      <div class="card-body">
-        <div class="d-flex justify-content-between mb-2">
-          <h5 class="fw-bold text-primary">Tiêu đề bài viết số 2</h5>
           <div>
-            <button class="btn btn-sm btn-outline-warning">Sửa</button>
-            <button class="btn btn-sm btn-outline-danger ms-1">Xóa</button>
+            <div class="bg-light p-3 rounded-3">
+              <strong class="d-block text-primary mb-1">{{ comment.user }}</strong>
+              <span>{{ comment.text }}</span>
+            </div>
+            <small class="text-muted ms-2">{{ new Date(comment.id).toLocaleTimeString() }}</small>
           </div>
         </div>
 
-        <div class="d-flex align-items-start mb-3">
-          <img src="../assets/images/speed.jpg" 
-               class="rounded border shadow-sm me-3" 
-               style="width: 100px; height: 100px; object-fit: cover;" 
-               alt="Thumbnail">
-          <p class="card-text text-secondary">
-            Nội dung bài 2 đây.
-          </p>
-        </div>
+        <div v-if="currentUser" class="mt-4 d-flex gap-2 align-items-start">
+          <img :src="currentUser.avatar || '#'" class="rounded-circle border" width="40" height="40">
 
-        <hr>
-        <p class="small fw-bold mb-2">Bình luận:</p>
-        <div class="ms-3 mb-2 p-2 bg-light rounded border-3 border-success">
-          <small class="fw-bold text-success">Mai Quốc Tam</small>
-          <p class="mb-0 small">hehe</p>
-        </div>
-
-        <!-- PHẦN NHẬP BÌNH LUẬN CHO NGƯỜI DÙNG (BÀI 2) -->
-        <div class="mt-3 d-flex gap-2">
-          <input type="text" class="form-control form-control-sm rounded-pill bg-light border-0 ps-3" placeholder="Viết bình luận của bạn...">
-          <button class="btn btn-primary btn-sm rounded-pill px-3">Gửi</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- BÀI VIẾT SỐ 3 -->
-    <div class="card mb-4 shadow-sm border-0">
-      <div class="card-body">
-        <div class="d-flex justify-content-between mb-2">
-          <h5 class="fw-bold">Tiêu đề bài viết số 3</h5>
-          <div>
-            <button class="btn btn-sm btn-outline-warning">Sửa</button>
-            <button class="btn btn-sm btn-outline-danger ms-1">Xóa</button>
+          <div class="flex-grow-1">
+            <textarea v-model="post.newCommentDraft" @keyup.enter.exact="triggerAddComment(post)"
+              class="form-control bg-light border-0 rounded-3" rows="2"
+              placeholder="Viết bình luận... (Nhấn Enter để gửi)"></textarea>
+            <div class="text-end mt-2">
+              <button @click="triggerAddComment(post)" class="btn btn-primary btn-sm px-4 rounded-pill">Gửi</button>
+            </div>
           </div>
         </div>
 
-        <div class="d-flex align-items-start mb-3">
-          <img src="../assets/images/miwa.jpg" 
-               class="rounded border shadow-sm me-3" 
-               style="width: 100px; height: 100px; object-fit: cover;" 
-               alt="Thumbnail">
-          <p class="card-text text-secondary">
-            Bài viết thứ 3 đây.
-          </p>
+        <div v-else class="alert alert-light border mt-3 text-center">
+          Vui lòng <router-link :to="{ name: 'login' }">đăng nhập</router-link> để bình luận.
         </div>
 
-        <hr>
-        <p class="small fw-bold mb-2">Bình luận:</p>
-        <div class="ms-3 mb-2 p-2 bg-light rounded border-3 border-danger">
-          <small class="fw-bold text-danger">Hoàng Nguyên</small>
-          <p class="mb-0 small">ahihi</p>
-        </div>
-
-        <!-- PHẦN NHẬP BÌNH LUẬN CHO NGƯỜI DÙNG (BÀI 3) -->
-        <div class="mt-3 d-flex gap-2">
-          <input type="text" class="form-control form-control-sm rounded-pill bg-light border-0 ps-3" placeholder="Viết bình luận của bạn...">
-          <button class="btn btn-primary btn-sm rounded-pill px-3">Gửi</button>
-        </div>
       </div>
     </div>
-
   </div>
 </template>
 
+<script setup>
+import { ref, reactive } from 'vue';
+
+const props = defineProps(['posts', 'currentUser']);
+const emit = defineEmits(['add-post', 'delete-post', 'add-comment']);
+
+const fileInput = ref(null);
+const newPost = reactive({
+  title: '',
+  content: '',
+  image: null
+});
+
+const handleFileChange = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    if (!file.type.startsWith('image/')) {
+      alert("Vui lòng chỉ chọn file ảnh!");
+      event.target.value = '';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      newPost.image = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+const triggerAddPost = () => {
+  if (!newPost.title || !newPost.content) return alert("Vui lòng nhập tiêu đề và nội dung!");
+
+  emit('add-post', {
+    id: Date.now(),
+    title: newPost.title,
+    content: newPost.content,
+    image: newPost.image,
+    comments: [],
+    newCommentDraft: ''
+  });
+
+  newPost.title = '';
+  newPost.content = '';
+  newPost.image = null;
+  if (fileInput.value) fileInput.value.value = '';
+  alert("Đăng bài thành công!");
+};
+
+const triggerAddComment = (post) => {
+  if (!post.newCommentDraft || post.newCommentDraft.trim() === '') return;
+
+  emit('add-comment', {
+    postId: post.id,
+    content: post.newCommentDraft
+  });
+
+  post.newCommentDraft = '';
+};
+</script>
+
 <style scoped>
-/* Chỉnh một chút để ô input khi click vào không bị viền đen xấu */
-.form-control:focus {
-  box-shadow: none;
-  background-color: #f8f9fa !important;
-  border: 1px solid #0d6efd !important;
+.article-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 600px;
+}
+
+.text-justify {
+  text-align: justify;
 }
 </style>
