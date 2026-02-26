@@ -22,7 +22,6 @@
                 </div>
             </form>
 
-                <!-- Hiển thị thông tin ngay sau khi nhập -->
             <div class="info-display mt-4 p-3 bg-dark text-white rounded">
                 <h2>Thông tin đã nhập:</h2>
                 <p><strong>Họ và Tên:</strong> {{ userInfo.name }}</p>
@@ -34,12 +33,11 @@
 </template>
 
 <script setup>
-    import { reactive } from 'vue';
+import { reactive } from 'vue';
 
-    // Khởi tạo đối tượng thông tin người dùng sử dụng reactive để tạo reactivity
-    const userInfo = reactive({
-        name: '',
-        age: null,
-        email: ''
-    });
+const userInfo = reactive({
+    name: '',
+    age: null,
+    email: ''
+});
 </script>

@@ -19,11 +19,11 @@
 import { ref, defineEmits } from 'vue';
 const username = ref('');
 const password = ref('');
-const emit = defineEmits(['loggedIn']);
+const emit = defineEmits(['loggedIn']); ``
 
 function handleLogin() {
   if (username.value && password.value) {
-    emit('loggedIn', username.value); // Phát sự kiện gửi kèm tên user [cite: 236]
+    emit('loggedIn', username.value);
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
     <div class="container">
-      <router-link class="navbar-brand fw-bold fs-4" :to="{ name: 'home' }">ASM 1</router-link>
+      <router-link class="navbar-brand fw-bold fs-4" :to="{ name: 'home' }">ASM 2 của Phú</router-link>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav ms-auto align-items-center">
           <router-link class="nav-link text-white fw-semibold px-3" :to="{ name: 'home' }">Trang chủ</router-link>

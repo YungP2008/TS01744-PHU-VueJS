@@ -7,7 +7,7 @@
         <br>
         <textarea v-model="content" placeholder="Nội dung bài viết"></textarea>
         <br>
-        <button @click="submitPost">Đăng bài</button>
+        <button class="btn btn-primary" @click="submitPost">Đăng bài</button>
     </div>
 </template>
 <script setup>
@@ -35,21 +35,22 @@ function submitPost() {
 }
 </script>
 <style>
-    input, textarea {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ddd;
-    }
+input,
+textarea {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
 
-    button {
+/* button {
         padding: 10px 20px;
         background-color: #3498db;
         color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-    }
+    } */
 </style>

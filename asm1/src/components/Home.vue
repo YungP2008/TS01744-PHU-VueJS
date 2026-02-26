@@ -37,27 +37,15 @@
         <div v-if="post.comments.length === 0" class="text-muted fst-italic mb-3">Chưa có bình luận nào.</div>
 
         <div v-for="comment in post.comments" :key="comment.id" class="d-flex mb-3">
-          <div class="me-3">
-            <img v-if="comment.avatar" :src="comment.avatar" class="rounded-circle border"
-              style="width: 40px; height: 40px; object-fit: cover;">
-
-            <div v-else class="bg-secondary rounded-circle text-white d-flex justify-content-center align-items-center"
-              style="width: 40px; height: 40px;">
-              {{ comment.user.charAt(0).toUpperCase() }}
-            </div>
-          </div>
-          <div>
+          <div class="flex-grow-1">
             <div class="bg-light p-3 rounded-3">
               <strong class="d-block text-primary mb-1">{{ comment.user }}</strong>
               <span>{{ comment.text }}</span>
             </div>
-            <small class="text-muted ms-2">{{ new Date(comment.id).toLocaleTimeString() }}</small>
           </div>
         </div>
 
         <div v-if="currentUser" class="mt-4 d-flex gap-2 align-items-start">
-          <img :src="currentUser.avatar || '#'" class="rounded-circle border" width="40" height="40">
-
           <div class="flex-grow-1">
             <textarea v-model="post.newCommentDraft" @keyup.enter.exact="triggerAddComment(post)"
               class="form-control bg-light border-0 rounded-3" rows="2"

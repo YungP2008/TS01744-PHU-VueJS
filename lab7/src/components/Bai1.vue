@@ -1,7 +1,7 @@
 <template>
   <div class="col-sm-4 p-5">
     <h3 class="text-center">Quản lý công việc</h3>
-    
+
     <form @submit.prevent="addList">
       <div class="mb-3">
         <label class="form-label">Tên công việc:</label>
@@ -11,8 +11,8 @@
     </form>
 
     <ul class="list-group mt-4">
-      <li class="list-group-item d-flex justify-content-between align-items-center" 
-          v-for="(job, index) in jobs" :key="index">
+      <li class="list-group-item d-flex justify-content-between align-items-center" v-for="(job, index) in jobs"
+        :key="index">
         {{ job }}
         <button class="btn btn-danger btn-sm" @click="removeList(index)">Xóa</button>
       </li>
@@ -29,7 +29,7 @@ const jobs = ref(['Ăn sáng', 'Đi học', 'Chơi bóng rổ']);
 const addList = () => {
   if (newToDo.value.trim()) {
     jobs.value.push(newToDo.value.trim());
-    newToDo.value = ''; // Reset input field
+    newToDo.value = '';
   }
 };
 

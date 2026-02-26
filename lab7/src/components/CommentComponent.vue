@@ -8,7 +8,7 @@
         <p class="card-text">Canxi là khoáng chất cần thiết đối với cơ thể người...</p>
       </div>
     </div>
-    
+
     <form @submit.prevent="submitComment">
       <div class="mt-3">
         <textarea class="form-control" v-model="commentText" placeholder="Nhập bình luận của bạn"></textarea>
@@ -29,7 +29,7 @@
 
 <script setup>
 import { ref, defineProps } from 'vue';
-const props = defineProps(['username']); // Nhận username từ component cha [cite: 277]
+const props = defineProps(['username']);
 const commentText = ref('');
 const comments = ref([]);
 

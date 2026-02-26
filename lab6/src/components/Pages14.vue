@@ -68,9 +68,7 @@ export default {
                 price: 85000,
             }
         ]);
-        // Trạng thái hiển thị chi tiết cho từng cuốn sách
         const showDetails = ref(products.value.map(() => false));
-        // Phương thức để ẩn/hiển thị chi tiết sách
         const toggleDetails = (index) => {
             showDetails.value[index] = !showDetails.value[index];
         };
